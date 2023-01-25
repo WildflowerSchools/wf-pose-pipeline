@@ -1,0 +1,11 @@
+FROM wildflowerschools/honeycomb-video-streamer:prepare-latest
+
+RUN pip install click python-dateutil redis msgpack
+
+RUN mkdir /scripts
+
+COPY ./scripts/entrypoint.py /scripts/entrypoint.py
+RUN chmod 777 /scripts/entrypoint.py
+
+ENTRYPOINT ["python", "/scripts/entrypoint.py"]
+
